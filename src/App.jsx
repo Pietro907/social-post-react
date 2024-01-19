@@ -4,7 +4,30 @@ import './components/Navbar';
 import Navbar from './components/Navbar';
 
 function App() {
-  //const [count, setCount] = useState(0)
+  //creo uno stato immutabile di partenza
+  const [count, setCount] = useState(0);
+
+  //creo uno stato immutabile di partenza
+  const [liked, setLiked] = useState(false);
+
+  //creo una variabile e assegno lo style con la condizione
+  const buttonStyle = {
+    color: liked ? '#8cdaff' : '',
+  };
+
+  //in unica funzione inserisco il conteggio più la condizione del conteggio e sotto un'altra per lo style del testo
+  function countLike() {
+    //condizione 1 conteggio
+    if (count == 0) {
+      setCount(count + 1);
+    } else {
+      setCount(count - 1);
+    }
+    //condizione 2 style
+    setLiked(!liked);
+  }
+
+
 
   return (
     <>
@@ -35,17 +58,18 @@ function App() {
               <div class="likes__cta">
                 <a class="like-button  js-like-button" href="#" data-postid="1">
                   <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                  <span class="like-button__label">Mi Piace</span>
+                  {/* onClick per l'evento scatenato dalla funzione cuontLike e in style inserisco la variabile con la condizione della proprietà color */}
+                  <button onClick={countLike} style={buttonStyle} class="btn">Mi Piace</button>
                 </a>
               </div>
-              <div class="likes__counter">
-                Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+              <div class="likes_counter">
+                Piace a <b>{count}</b> persone
               </div>
             </div>
           </div>
         </div>
 
-      </div>
+      </div >
 
 
     </>
